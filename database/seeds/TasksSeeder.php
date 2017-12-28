@@ -15,7 +15,7 @@ class TasksSeeder extends Seeder
         $limit = 20;
         
         for ($i = 0; $i < $limit; $i++) {
-            DB::table('task')->insert([
+            DB::table('tasks')->insert([
                 'name' => $faker->sentence(),
             ]);
         }
