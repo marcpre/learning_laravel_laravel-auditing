@@ -37,7 +37,7 @@ return [
 
     'user' => [
         'primary_key' => 'id',
-        'foreign_key' => 'user_id',
+        'foreign_key' => 'users_id',
         'model'       => App\User::class,
         'resolver'    => App\User::class,
     ],
