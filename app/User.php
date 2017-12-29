@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Contracts\UserResolver;
+use Illuminate\Support\Facades\Auth;
 
-class User extends Authenticatable implements Auditable
+class User extends Authenticatable implements Auditable, UserResolver
 {
     use \OwenIt\Auditing\Auditable;
     use Notifiable;
@@ -32,4 +34,9 @@ class User extends Authenticatable implements Auditable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public static function resolveId()
+    {
+        return Auth::check() ? Auth::user()->getAuthIdentifier() : null;
+    }
 }
